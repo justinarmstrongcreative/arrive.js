@@ -1,3 +1,6 @@
+onScreen();
+window.addEventListener("scroll", onScreen);
+
 function onScreen(){
 	var win_height = window.innerHeight; // Window height
 	var win_scroll = window.scrollY; // Window scroll
