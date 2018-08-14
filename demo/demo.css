@@ -8,5 +8,5 @@ body {
 
 img {
 	width: calc(25vw - 3px);
-	height: calc(50vh - 3px);
+	height: calc(25vw - 3px);
 }
