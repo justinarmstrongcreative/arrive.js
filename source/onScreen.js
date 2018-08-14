@@ -14,9 +14,9 @@ function onScreen(thing) {
     $(thing).each(function() {
         var win_scroll = window.scrollY || document.documentElement.scrollTop,
             window_height = window.innerHeight,
-            element = $(this), // The element
-            element_height = element.outerHeight(),
-            element_offset = element.offset(),
+            $element = $(this), // The element
+            element_height = $element.outerHeight(),
+            element_offset = $element.offset(),
             position_top = element_offset.top, // Element offset top
             position_bot = position_top - window_height; // Element offset bottom
 
@@ -25,10 +25,10 @@ function onScreen(thing) {
             win_scroll > position_bot &&
             win_scroll < position_top + element_height
         ) {
-            $(this).addClass('on');
+            $element.addClass('on');
         }
         else { // comment this else out if you don't want it to run on scroll up
-            $(this).removeClass('on');
+            $element.removeClass('on');
         }
     });
 }
