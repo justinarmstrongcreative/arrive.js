@@ -1,0 +1,12 @@
+body {
+	margin: 0;
+}
+
+.mask {
+	margin-bottom: -4px;
+}
+
+img {
+	width: calc(25vw - 3px);
+	height: calc(50vh - 3px);
+}
