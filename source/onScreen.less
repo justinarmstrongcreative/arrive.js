@@ -1,0 +1,128 @@
+// Mask
+.mask {
+    display: inline-block;
+    overflow: hidden;
+    position: relative;
+
+    &:after {
+        content: '';
+        background-color: #fff;
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        z-index: 2;
+        transition: all .5s .5s ease;
+    }
+
+    &-top,
+    &-bottom {
+
+        &:after {
+            left: 0;
+        }
+    }
+
+    &-left,
+    &-right {
+
+        &:after {
+            top: 0;
+        }
+    }
+
+    &-top {
+
+        &:after {
+            top: 0;
+        }
+    }
+
+    &-right {
+
+        &:after {
+            right: 0;
+        }
+    }
+
+    &-bottom {
+
+        &:after {
+            bottom: 0;
+        }
+    }
+
+    &-left {
+
+        &:after {
+            right: 0;
+            top: 0;
+        }
+    }
+
+    // on
+    &-top,
+    &-bottom {
+
+        &.on {
+
+            &:after {
+                height: 0;
+            }
+        }
+    }
+
+    &-left,
+    &-right {
+
+        &.on {
+
+            &:after {
+                width: 0;
+            }
+        }
+    }
+}
+
+// Fade
+.fade-in {
+    transition: all .5s .5s ease;
+    opacity: 0;
+
+    &.on {
+        opacity: 1;
+    }
+}
+
+.fade-out {
+    transition: all .5s .5s ease;
+    opacity: 1;
+
+    &.on {
+        opacity: 0;
+    }
+}
+
+// Move
+.move {
+    transition: all .5s .5s ease;
+
+    &-up {
+        transform: translate(0, 50px);
+    }
+
+    &-down {
+        transform: translate(0, -50px);
+    }
+
+    &-left {
+        transform: translate(50px, 0);
+    }
+
+    &-right {
+        transform: translate(-50px, 0);
+    }
+
+    &.on {
+        transform: translate(0, 0);
+    }
+}
