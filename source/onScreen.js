@@ -12,55 +12,54 @@ window.addEventListener('scroll', function() {
 
 function onScreen(element) {
     $(element).each(function() {
-        var window_height = window.innerHeight,
-            window_scroll_top = window.scrollY || document.documentElement.scrollTop,
-            window_scroll_bottom = window_scroll_top + window_height,
+        var windowHeight = window.innerHeight,
+            windowScrollTop = window.scrollY || document.documentElement.scrollTop,
+            windowScrollBottom = windowScrollTop + windowHeight,
 
-            $this = $(this), // The element
-            this_classes = $this.attr('class'),
-            this_class_array = this_classes.split(' '),
-            this_height = $this.outerHeight(),
-            this_offset = $this.offset(),
-
-            offset_top = this_offset.top, // Element offset top
-            offset_bot = offset_top + this_height, // Element offset bottom
+            $this = $(this), // the element
+            thisClasses = $this.attr('class'), // get element classes
+            thisClassArray = thisClasses.split(' '), // put classes in an array
+            thisHeight = $this.outerHeight(), // element height
+            thisOffset = $this.offset(), // element offset
+            offsetTop = thisOffset.top, // element offset top
+            offsetBot = offsetTop + thisHeight, // element offset bottom
 
             percent = 0,
             delay = 0.5;
 
         // percentage
-        if(this_classes.indexOf('on-screen_percent') > -1) {
-            for(var p = 0; p < this_class_array.length; p++) {
-                if(this_class_array[p].indexOf('on-screen_percent') > -1) {
-                    percent = parseInt(this_class_array[p].split('--').pop().trim()) / 100;
+        if(thisClasses.indexOf('on-screen_percent') > -1) {
+            for(var p = 0; p < thisClassArray.length; p++) {
+                if(thisClassArray[p].indexOf('on-screen_percent') > -1) {
+                    percent = parseInt(thisClassArray[p].split('--').pop().trim()) / 100;
                 }
             }
         }
 
         // duration
-        if(this_classes.indexOf('on-screen_duration') > -1) {
-            for(var du = 0; du < this_class_array.length; du++) {
-                if(this_class_array[du].indexOf('on-screen_duration') > -1) {
-                    duration = parseInt(this_class_array[du].split('--').pop().trim()) / 1000;
+        if(thisClasses.indexOf('on-screen_duration') > -1) {
+            for(var du = 0; du < thisClassArray.length; du++) {
+                if(thisClassArray[du].indexOf('on-screen_duration') > -1) {
+                    duration = parseInt(thisClassArray[du].split('--').pop().trim()) / 1000;
                     $this.css('transition-duration', duration+'s');
                 }
             }
         }
 
         // delay
-        if(this_classes.indexOf('on-screen_delay') > -1) {
-            for(var de = 0; de < this_class_array.length; de++) {
-                if(this_class_array[de].indexOf('on-screen_delay') > -1) {
-                    delay = parseInt(this_class_array[de].split('--').pop().trim()) / 1000;
+        if(thisClasses.indexOf('on-screen_delay') > -1) {
+            for(var de = 0; de < thisClassArray.length; de++) {
+                if(thisClassArray[de].indexOf('on-screen_delay') > -1) {
+                    delay = parseInt(thisClassArray[de].split('--').pop().trim()) / 1000;
                     $this.css('transition-delay', delay+'s');
                 }
             }
         }
 
-        // Check if the element is on screen
+        // check if the element is on screen
         if (
-            window_scroll_bottom > offset_top + (this_height * percent) && 
-            window_scroll_top < offset_bot - (this_height * percent)
+            windowScrollBottom > offsetTop + (thisHeight * percent) && 
+            windowScrollTop < offsetBot - (thisHeight * percent)
         ) {
             $this.addClass('on');
         }
