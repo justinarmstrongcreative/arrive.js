@@ -10,8 +10,8 @@ window.addEventListener('scroll', function() {
     onScreen('.on-screen');
 });
 
-function onScreen(thing) {
-    $(thing).each(function() {
+function onScreen(element) {
+    $(element).each(function() {
         var window_height = window.innerHeight,
             window_scroll_top = window.scrollY || document.documentElement.scrollTop,
             window_scroll_bottom = window_scroll_top + window_height,
@@ -39,14 +39,16 @@ function onScreen(thing) {
         // Check if the element is on screen
         if (
             window_scroll_bottom > offset_top + (this_height * percent) && 
-            window_scroll_top < offset_bot
+            window_scroll_top < offset_bot - (this_height * percent)
         ) {
             $this.addClass('on');
         }
 
-        // comment this 'else' out if you don't want it to run on scroll up
+        // if element has class'off-screen' it will unanimate
         else {
-            $this.removeClass('on');
+            if($this.hasClass('off-screen')) {
+                $this.removeClass('on');
+            }
         }
     });
 }
