@@ -2,11 +2,27 @@ body {
 	margin: 0;
 }
 
-.mask {
+.intro {
+	margin-bottom: 100vh;
+}
+
+.on-screen {
+	display: inline-block;
+}
+
+.on-screen_mask--up,
+.on-screen_mask--right,
+.on-screen_mask--down,
+.on-screen_mask--left {
 	margin-bottom: -4px;
 }
 
 img {
 	width: calc(25vw - 3px);
 	height: calc(25vw - 3px);
+
+	&.full {
+		width: 100vw;
+		height: 100vw;
+	}
 }

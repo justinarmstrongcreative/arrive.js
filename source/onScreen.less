@@ -1,129 +1,146 @@
 .on-screen {
     transition: all .5s .5s ease;
-}
 
-// Mask
-.mask {
-    display: inline-block;
-    overflow: hidden;
-    position: relative;
+    // Fade
+    &_fade {
 
-    &:after {
-        content: '';
-        background-color: #fff;
-        position: absolute;
-        height: 100%;
-        width: 100%;
-        z-index: 2;
-        transition: all .5s .5s ease;
-    }
+        &--in {
+            opacity: 0;
 
-    &-top,
-    &-bottom {
-
-        &:after {
-            left: 0;
+            &.on {
+                opacity: 1;
+            }
         }
-    }
 
-    &-left,
-    &-right {
+        &--out {
+            opacity: 1;
 
-        &:after {
-            top: 0;
-        }
-    }
-
-    &-top {
-
-        &:after {
-            top: 0;
-        }
-    }
-
-    &-right {
-
-        &:after {
-            right: 0;
-        }
-    }
-
-    &-bottom {
-
-        &:after {
-            bottom: 0;
-        }
-    }
-
-    &-left {
-
-        &:after {
-            right: 0;
-            top: 0;
-        }
-    }
-
-    // on
-    &-top,
-    &-bottom {
-
-        &.on {
-
-            &:after {
-                height: 0;
+            &.on {
+                opacity: 0;
             }
         }
     }
 
-    &-left,
-    &-right {
+    // Mask
+    &_mask {
 
-        &.on {
+        &--up,
+        &--right,
+        &--down,
+        &--left {
+            display: inline-block;
+            overflow: hidden;
+            position: relative;
 
             &:after {
-                width: 0;
+                content: '';
+                background-color: #fff;
+                position: absolute;
+                height: 100%;
+                width: 100%;
+                z-index: 2;
+                transition: all .5s .5s ease;
+            }
+        }
+
+        &--up,
+        &--down {
+
+            &:after {
+                left: 0;
+            }
+        }
+
+        &--left,
+        &--right {
+
+            &:after {
+                top: 0;
+            }
+        }
+
+        &--up {
+
+            &:after {
+                top: 0;
+            }
+        }
+
+        &--right {
+
+            &:after {
+                right: 0;
+            }
+        }
+
+        &--down {
+
+            &:after {
+                bottom: 0;
+            }
+        }
+
+        &--left {
+
+            &:after {
+                right: 0;
+                top: 0;
+            }
+        }
+
+        // on
+        &--up,
+        &--down {
+
+            &.on {
+
+                &:after {
+                    height: 0;
+                }
+            }
+        }
+
+        &--left,
+        &--right {
+
+            &.on {
+
+                &:after {
+                    width: 0;
+                }
             }
         }
     }
-}
 
-// Fade
-.fade-in {
-    opacity: 0;
+    // Move
+    &_move {
 
-    &.on {
-        opacity: 1;
-    }
-}
+        &--up,
+        &--down,
+        &--left,
+        &--right {
 
-.fade-out {
-    opacity: 1;
+             &.on {
+                transform: translate(0, 0);
+            }
+        }
 
-    &.on {
-        opacity: 0;
-    }
-}
+        &--up {
+            transform: translate(0, 25%);
+        }
 
-// Move
-.move {
+        &--down {
+            transform: translate(0, -25%);
+        }
 
-    &-up {
-        transform: translate(0, 25%);
-    }
+        &--left {
+            transform: translate(25%, 0);
+        }
 
-    &-down {
-        transform: translate(0, -25%);
-    }
-
-    &-left {
-        transform: translate(25%, 0);
+        &--right {
+            transform: translate(-25%, 0);
+        }
     }
 
-    &-right {
-        transform: translate(-25%, 0);
-    }
 
-    &.on {
-        transform: translate(0, 0);
-    }
-}
+} // on-screen

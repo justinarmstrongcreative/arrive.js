@@ -12,23 +12,41 @@ window.addEventListener('scroll', function() {
 
 function onScreen(thing) {
     $(thing).each(function() {
-        var win_scroll = window.scrollY || document.documentElement.scrollTop,
-            window_height = window.innerHeight,
-            $element = $(this), // The element
-            element_height = $element.outerHeight(),
-            element_offset = $element.offset(),
-            position_top = element_offset.top, // Element offset top
-            position_bot = position_top - window_height; // Element offset bottom
+        var window_height = window.innerHeight,
+            window_scroll_top = window.scrollY || document.documentElement.scrollTop,
+            window_scroll_bottom = window_scroll_top + window_height,
+
+            $this = $(this), // The element
+            this_classes = $this.attr('class'),
+            this_class_array = this_classes.split(' '),
+            this_height = $this.outerHeight(),
+            this_offset = $this.offset(),
+
+            offset_top = this_offset.top, // Element offset top
+            offset_bot = offset_top + this_height, // Element offset bottom
+
+            percent = 0;
+
+        // if has percentage
+        if(this_classes.indexOf('on-screen_percent') > -1) {
+            for(var i = 0; i < this_class_array.length; i++) {
+                if(this_class_array[i].indexOf('on-screen_percent') > -1) {
+                    percent = parseInt(this_class_array[i].split('--').pop().trim()) / 100;
+                }
+            }
+        }
 
         // Check if the element is on screen
         if (
-            win_scroll > position_bot &&
-            win_scroll < position_top + element_height
+            window_scroll_bottom > offset_top + (this_height * percent) && 
+            window_scroll_top < offset_bot
         ) {
-            $element.addClass('on');
+            $this.addClass('on');
         }
-        else { // comment this else out if you don't want it to run on scroll up
-            $element.removeClass('on');
+
+        // comment this 'else' out if you don't want it to run on scroll up
+        else {
+            $this.removeClass('on');
         }
     });
 }
