@@ -1,129 +1,101 @@
 .on-screen {
-    transition: all .5s .5s ease;
-}
 
-// Mask
-.mask {
-    display: inline-block;
-    overflow: hidden;
-    position: relative;
+    // Fade
+    &_fade {
 
-    &:after {
-        content: '';
-        background-color: #fff;
-        position: absolute;
-        height: 100%;
-        width: 100%;
-        z-index: 2;
-        transition: all .5s .5s ease;
-    }
+        &--in,
+        &--out {
+            opacity: 0;
 
-    &-top,
-    &-bottom {
-
-        &:after {
-            left: 0;
-        }
-    }
-
-    &-left,
-    &-right {
-
-        &:after {
-            top: 0;
-        }
-    }
-
-    &-top {
-
-        &:after {
-            top: 0;
-        }
-    }
-
-    &-right {
-
-        &:after {
-            right: 0;
-        }
-    }
-
-    &-bottom {
-
-        &:after {
-            bottom: 0;
-        }
-    }
-
-    &-left {
-
-        &:after {
-            right: 0;
-            top: 0;
-        }
-    }
-
-    // on
-    &-top,
-    &-bottom {
-
-        &.on {
-
-            &:after {
-                height: 0;
+            &.on {
+                opacity: 1;
             }
         }
     }
 
-    &-left,
-    &-right {
+    // Mask
+    &_mask {
 
-        &.on {
+        &--in,
+        &--out {
 
-            &:after {
-                width: 0;
+            &__up,
+            &__right,
+            &__down,
+            &__left {
+                display: inline-block;
+                overflow: hidden;
+                position: relative;
+
+                .mask {
+                    background-color: #fff;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    height: 101%;
+                    width: 101%;
+                    z-index: 2;
+                    transform: translate(0,0);
+                }
+            }
+
+            &__up {
+
+                &.on {
+
+                    .mask {
+                        transform: translate(0,-101%);
+                    }
+                }
+            }
+
+            &__right {
+
+                &.on {
+
+                    .mask {
+                        transform: translate(-101%,0);
+                    }
+                }
+            }
+
+            &__down {
+
+                &.on {
+
+                    .mask {
+                        transform: translate(0,101%);
+                    }
+                }
+            }
+
+            &__left {
+
+                &.on {
+
+                    .mask {
+                        transform: translate(101%,0);
+                    }
+                }
             }
         }
     }
-}
 
-// Fade
-.fade-in {
-    opacity: 0;
+    // Move
+    &_move {
 
-    &.on {
-        opacity: 1;
+        &--in,
+        &--out {
+
+            &__up,
+            &__down,
+            &__left,
+            &__right {
+
+                &.on {
+                    transform: translate(0, 0) !important;
+                }
+            }
+        }
     }
-}
-
-.fade-out {
-    opacity: 1;
-
-    &.on {
-        opacity: 0;
-    }
-}
-
-// Move
-.move {
-
-    &-up {
-        transform: translate(0, 25%);
-    }
-
-    &-down {
-        transform: translate(0, -25%);
-    }
-
-    &-left {
-        transform: translate(25%, 0);
-    }
-
-    &-right {
-        transform: translate(-25%, 0);
-    }
-
-    &.on {
-        transform: translate(0, 0);
-    }
-}
+} // .on-screen
