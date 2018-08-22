@@ -10,13 +10,6 @@ body {
 	display: inline-block;
 }
 
-.on-screen_mask--up,
-.on-screen_mask--right,
-.on-screen_mask--down,
-.on-screen_mask--left {
-	margin-bottom: -4px;
-}
-
 img {
 	width: calc(25vw - 3px);
 	height: calc(25vw - 3px);

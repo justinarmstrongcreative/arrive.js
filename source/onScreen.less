@@ -1,22 +1,14 @@
 .on-screen {
-    transition: all .5s .5s ease;
 
     // Fade
     &_fade {
 
-        &--in {
+        &--in,
+        &--out {
             opacity: 0;
 
             &.on {
                 opacity: 1;
-            }
-        }
-
-        &--out {
-            opacity: 1;
-
-            &.on {
-                opacity: 0;
             }
         }
     }
@@ -24,89 +16,81 @@
     // Mask
     &_mask {
 
-        &--up,
-        &--right,
-        &--down,
-        &--left {
-            display: inline-block;
-            overflow: hidden;
-            position: relative;
+        &--in,
+        &--out {
 
-            &:after {
-                content: '';
-                background-color: #fff;
-                position: absolute;
-                height: 100%;
-                width: 100%;
-                z-index: 2;
-                transition: all .5s .5s ease;
-            }
-        }
+            &__up,
+            &__right,
+            &__down,
+            &__left {
+                display: inline-block;
+                overflow: hidden;
+                position: relative;
 
-        &--up,
-        &--down {
-
-            &:after {
-                left: 0;
-            }
-        }
-
-        &--left,
-        &--right {
-
-            &:after {
-                top: 0;
-            }
-        }
-
-        &--up {
-
-            &:after {
-                top: 0;
-            }
-        }
-
-        &--right {
-
-            &:after {
-                right: 0;
-            }
-        }
-
-        &--down {
-
-            &:after {
-                bottom: 0;
-            }
-        }
-
-        &--left {
-
-            &:after {
-                right: 0;
-                top: 0;
-            }
-        }
-
-        // on
-        &--up,
-        &--down {
-
-            &.on {
-
-                &:after {
-                    height: 0;
+                .mask {
+                    background-color: #fff;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    height: 100%;
+                    width: 100%;
+                    z-index: 2;
                 }
             }
-        }
 
-        &--left,
-        &--right {
+            &__up {
 
-            &.on {
+                .mask {
+                    top: 0;
+                }
 
-                &:after {
-                    width: 0;
+                &.on {
+
+                    .mask {
+                        top: -100%;
+                    }
+                }
+            }
+
+            &__right {
+
+                .mask {
+                    left: 0;
+                }
+
+                &.on {
+
+                    .mask {
+                        left: 100%;
+                    }
+                }
+            }
+
+            &__down {
+
+                .mask {
+                    top: 0;
+                }
+
+                &.on {
+
+                    .mask {
+                        top: 100%;
+                    }
+                }
+            }
+
+            &__left {
+
+                .mask {
+                    left: 0;
+                }
+
+                &.on {
+
+                    .mask {
+                        left: -100%;
+                    }
                 }
             }
         }
@@ -115,32 +99,18 @@
     // Move
     &_move {
 
-        &--up,
-        &--down,
-        &--left,
-        &--right {
+        &--in,
+        &--out {
 
-             &.on {
-                transform: translate(0, 0);
+            &__up,
+            &__down,
+            &__left,
+            &__right {
+
+                &.on {
+                    transform: translate(0, 0) !important;
+                }
             }
         }
-
-        &--up {
-            transform: translate(0, 25%);
-        }
-
-        &--down {
-            transform: translate(0, -25%);
-        }
-
-        &--left {
-            transform: translate(25%, 0);
-        }
-
-        &--right {
-            transform: translate(-25%, 0);
-        }
     }
-
-
-} // on-screen
+} // .on-screen
