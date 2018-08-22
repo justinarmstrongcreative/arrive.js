@@ -1,18 +1,58 @@
+html {
+  box-sizing: border-box;
+  -ms-overflow-style: scrollbar;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
 body {
 	margin: 0;
 }
 
-.intro {
-	margin-bottom: 100vh;
+h1, h2, h3, h4, h5, h6, p {
+	font-family: 'Helvetica', sans-serif;
 }
+
+h1 {
+	font-size: 40px;
+}
+
+p {
+	font-size: 14px;
+}
+
+.intro {
+	/*margin-bottom: 100vh;*/
+	border: 0;
+	margin-top: 0;
+}
+
+section {
+	border-top: 1px solid #333;
+	margin-bottom: 100px;
+}
+
+header {
+	padding: 40px 20px;
+}
+
+/*.mask {
+	margin-bottom: -3px;
+}*/
 
 .on-screen {
 	display: inline-block;
+	width: calc(25vw - 3px);
+	height: calc(25vw - 3px);
 }
 
 img {
-	width: calc(25vw - 3px);
-	height: calc(25vw - 3px);
+	height: 100%;
+	width: 100%;
 
 	&.full {
 		width: 100vw;

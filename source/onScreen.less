@@ -32,64 +32,49 @@
                     position: absolute;
                     top: 0;
                     left: 0;
-                    height: 100%;
-                    width: 100%;
+                    height: 101%;
+                    width: 101%;
                     z-index: 2;
+                    transform: translate(0,0);
                 }
             }
 
             &__up {
 
-                .mask {
-                    top: 0;
-                }
-
                 &.on {
 
                     .mask {
-                        top: -100%;
+                        transform: translate(0,-101%);
                     }
                 }
             }
 
             &__right {
 
-                .mask {
-                    left: 0;
-                }
-
                 &.on {
 
                     .mask {
-                        left: 100%;
+                        transform: translate(-101%,0);
                     }
                 }
             }
 
             &__down {
 
-                .mask {
-                    top: 0;
-                }
-
                 &.on {
 
                     .mask {
-                        top: 100%;
+                        transform: translate(0,101%);
                     }
                 }
             }
 
             &__left {
 
-                .mask {
-                    left: 0;
-                }
-
                 &.on {
 
                     .mask {
-                        left: -100%;
+                        transform: translate(101%,0);
                     }
                 }
             }

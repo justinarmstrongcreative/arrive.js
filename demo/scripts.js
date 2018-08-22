@@ -33,8 +33,11 @@ function onScreen(element) {
             reverse = false,
             delay = 500,
             duration = 500,
+            mask = false,
+            maskColor = 'ffffff',
             percent = 0,
-            move = 25;
+            move = false,
+            moveAmount = 25;
 
         if(thisClasses.indexOf('--out') > -1) {
             reverse = true;
@@ -60,28 +63,38 @@ function onScreen(element) {
 
         // mask
         if(thisClasses.indexOf('on-screen_mask') > -1 && !$this.hasClass('mask-added')) {
-            $this.prepend('<div class="mask"></div>').addClass('mask-added');
+            mask = true;
+
+            for(var mc = 0; mc < thisClassArray.length; mc++) {
+                if(thisClassArray[mc].indexOf('on-screen_mask--color') > -1) {
+                    maskColor = thisClassArray[mc].split('__').pop().trim();
+                }
+            }
+
+            $this.prepend('<div class="mask" style="background-color: #'+maskColor+'; transition: all '+duration+'ms"></div>').addClass('mask-added');
         }
 
         // move
         if(thisClasses.indexOf('on-screen_move') > -1) {
+            move = true;
+
             for(var m = 0; m < thisClassArray.length; m++) {
                 if(thisClassArray[m].indexOf('on-screen_move') > -1) {
-                    move = parseInt(thisClassArray[m].split('--').pop().trim());
+                    moveAmount = parseInt(thisClassArray[m].split('--').pop().trim());
                 }
 
-                if(!isNaN(move)){
+                if(!isNaN(moveAmount)){
                     if(thisClasses.indexOf('move--in__up') > -1 || thisClasses.indexOf('move--out__up') > -1) {
-                        $this.css('transform', 'translate(0,'+move+'%)');
+                        $this.css('transform', 'translate(0,'+moveAmount+'%)');
                     }
                     if(thisClasses.indexOf('move--in__down') > -1 || thisClasses.indexOf('move--out__down') > -1) {
-                        $this.css('transform', 'translate(0,-'+move+'%)');
+                        $this.css('transform', 'translate(0,-'+moveAmount+'%)');
                     }
                     if(thisClasses.indexOf('move--in__left') > -1 || thisClasses.indexOf('move--out__left') > -1) {
-                        $this.css('transform', 'translate('+move+'%,0)');
+                        $this.css('transform', 'translate('+moveAmount+'%,0)');
                     }
                     if(thisClasses.indexOf('move--in__right') > -1 || thisClasses.indexOf('move--out__right') > -1) {
-                        $this.css('transform', 'translate(-'+move+'%,0)');
+                        $this.css('transform', 'translate(-'+moveAmount+'%,0)');
                     }
                 }
             }
@@ -96,10 +109,12 @@ function onScreen(element) {
             }
         }
 
+        // add transition
+        if(move === false) {
+            $this.css('transition', 'all '+duration+'ms');
+        }
 
-
-        
-        
+        // reverse
         if(reverse === true) {
             // for on load display
             if(!$this.hasClass('reverse')){
@@ -108,42 +123,36 @@ function onScreen(element) {
             $this.addClass('reverse');
         }
 
-        // check if the element is on screen
         setTimeout(function(){
 
-            // add css transitions
-            $this.css('transition', 'all '+duration+'ms');
-            $mask.css('transition', 'all '+duration+'ms');
+            // move needs transition added after delay
+            if(move === true) {
+                $this.css('transition', 'all '+duration+'ms');
+            }
 
-            if(reverse === true) {
-                if (
-                    windowScrollBottom > offsetTop + (thisHeight * percent) && 
-                    windowScrollTop < offsetBot - (thisHeight * percent)
-                ) {
+            // check if the element is on screen
+            if (
+                windowScrollBottom > offsetTop + (thisHeight * percent) && 
+                windowScrollTop < offsetBot - (thisHeight * percent)
+            ) {
+                if(reverse === true) {
                     $this.removeClass('on');
-                }
-
-                // if element has class'unanimate' it will unanimate
-                else {
-                    if($this.hasClass('unanimate')) {
-                        $this.addClass('on');
-                    }
-                }
-            } else {
-                if (
-                    windowScrollBottom > offsetTop + (thisHeight * percent) && 
-                    windowScrollTop < offsetBot - (thisHeight * percent)
-                ) {
+                } else {
                     $this.addClass('on');
                 }
+            }
 
-                // if element has class'unanimate' it will unanimate
-                else {
-                    if($this.hasClass('unanimate')) {
+            // if element has class'unanimate' it will unanimate
+            else {
+                if($this.hasClass('unanimate')) {
+                    if(reverse === true) {
+                        $this.addClass('on');
+                    } else {
                         $this.removeClass('on');
                     }
                 }
             }
+
         },delay);
         
     });
