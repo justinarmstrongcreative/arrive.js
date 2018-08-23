@@ -117,11 +117,6 @@ function arrive(element) {
             }
         }
 
-        // add transition
-        if(move === false) {
-            $this.css('transition', 'all '+duration+'ms '+timing+'');
-        }
-
         // reverse
         if(reverse === true) {
             // for on load display
@@ -133,10 +128,8 @@ function arrive(element) {
 
         setTimeout(function(){
 
-            // move needs transition added after delay
-            if(move === true) {
-                $this.css('transition', 'all '+duration+'ms '+timing+'');
-            }
+            // add transition
+            $this.css('transition', 'all '+duration+'ms '+timing+'');
 
             // check if the element is on screen
             if (
