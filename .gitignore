@@ -1,5 +1,5 @@
 .DS_Store
 node_modules
-gruntfile.js
+#gruntfile.js
 package-lock.json
-package.json
+#package.json
