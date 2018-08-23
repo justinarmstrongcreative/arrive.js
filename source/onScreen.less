@@ -1,28 +1,28 @@
-.on-screen {
+.arrive {
 
     // Fade
-    &_fade {
+    &-fade {
 
-        &--in,
-        &--out {
+        &_in,
+        &_out {
             opacity: 0;
 
-            &.on {
+            &.active {
                 opacity: 1;
             }
         }
     }
 
     // Mask
-    &_mask {
+    &-mask {
 
-        &--in,
-        &--out {
+        &_in,
+        &_out {
 
-            &__up,
-            &__right,
-            &__down,
-            &__left {
+            &--up,
+            &--right,
+            &--down,
+            &--left {
                 display: inline-block;
                 overflow: hidden;
                 position: relative;
@@ -39,9 +39,9 @@
                 }
             }
 
-            &__up {
+            &--up {
 
-                &.on {
+                &.active {
 
                     .mask {
                         transform: translate(0,-101%);
@@ -49,19 +49,19 @@
                 }
             }
 
-            &__right {
+            &--right {
 
-                &.on {
+                &.active {
 
                     .mask {
-                        transform: translate(-101%,0);
+                        transform: translate(101%,0);
                     }
                 }
             }
 
-            &__down {
+            &--down {
 
-                &.on {
+                &.active {
 
                     .mask {
                         transform: translate(0,101%);
@@ -69,12 +69,12 @@
                 }
             }
 
-            &__left {
+            &--left {
 
-                &.on {
+                &.active {
 
                     .mask {
-                        transform: translate(101%,0);
+                        transform: translate(-101%,0);
                     }
                 }
             }
@@ -82,20 +82,20 @@
     }
 
     // Move
-    &_move {
+    &-move {
 
-        &--in,
-        &--out {
+        &_in,
+        &_out {
 
-            &__up,
-            &__down,
-            &__left,
-            &__right {
+            &--up,
+            &--down,
+            &--left,
+            &--right {
 
-                &.on {
+                &.active {
                     transform: translate(0, 0) !important;
                 }
             }
         }
     }
-} // .on-screen
+} // .arrive
