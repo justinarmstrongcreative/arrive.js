@@ -30,6 +30,7 @@ function arrive(element) {
             reverse = false,
             delay = 500,
             duration = 500,
+            timing = 'ease',
             mask = false,
             maskColor = 'ffffff',
             percent = 0,
@@ -58,6 +59,16 @@ function arrive(element) {
             }
         }
 
+        // timing
+        if(thisClasses.indexOf('arrive-timing') > -1) {
+            for(var ti = 0; ti < thisClassArray.length; ti++) {
+                if(thisClassArray[ti].indexOf('arrive-timing') > -1) {
+                    timing = thisClassArray[ti].split('_').pop().trim();
+                    console.log(timing);
+                }
+            }
+        }
+
         // mask
         if(thisClasses.indexOf('arrive-mask') > -1 && !$this.hasClass('mask-added')) {
             mask = true;
@@ -68,7 +79,7 @@ function arrive(element) {
                 }
             }
             // prepend div rather than using psuedo element
-            $this.prepend('<div class="mask" style="background-color: #'+maskColor+'; transition: all '+duration+'ms"></div>').addClass('mask-added');
+            $this.prepend('<div class="mask" style="background-color: #'+maskColor+'; transition: all '+duration+'ms '+timing+'"></div>').addClass('mask-added');
         }
 
         // move
@@ -108,7 +119,7 @@ function arrive(element) {
 
         // add transition
         if(move === false) {
-            $this.css('transition', 'all '+duration+'ms');
+            $this.css('transition', 'all '+duration+'ms '+timing+'');
         }
 
         // reverse
@@ -124,7 +135,7 @@ function arrive(element) {
 
             // move needs transition added after delay
             if(move === true) {
-                $this.css('transition', 'all '+duration+'ms');
+                $this.css('transition', 'all '+duration+'ms '+timing+'');
             }
 
             // check if the element is on screen
