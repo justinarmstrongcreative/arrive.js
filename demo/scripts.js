@@ -68,7 +68,6 @@ function arrive(element) {
             for(var ti = 0; ti < thisClassArray.length; ti++) {
                 if(thisClassArray[ti].indexOf('arrive-timing') > -1) {
                     timing = thisClassArray[ti].split('_').pop().trim();
-                    console.log(timing);
                 }
             }
         }
