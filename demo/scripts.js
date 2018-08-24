@@ -124,7 +124,7 @@ function arrive(element) {
         if(reverse === true) {
             // for on load display
             if(!$this.hasClass('arrive-reverse')){
-                $this.addClass('active');
+                $this.addClass('arrive-active');
             }
             $this.addClass('arrive-reverse');
         }
@@ -140,9 +140,9 @@ function arrive(element) {
                 windowScrollTop < offsetBot - (thisHeight * percent)
             ) {
                 if(reverse === true) {
-                    $this.removeClass('active');
+                    $this.removeClass('arrive-active');
                 } else {
-                    $this.addClass('active');
+                    $this.addClass('arrive-active');
                 }
             }
 
@@ -150,9 +150,9 @@ function arrive(element) {
             else {
                 if($this.hasClass('arrive-unanimate')) {
                     if(reverse === true) {
-                        $this.addClass('active');
+                        $this.addClass('arrive-active');
                     } else {
-                        $this.removeClass('active');
+                        $this.removeClass('arrive-active');
                     }
                 }
             }
